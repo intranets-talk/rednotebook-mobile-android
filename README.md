@@ -6,11 +6,11 @@ A simple Android/Kotlin companion app for the [RedNotebook](https://github.com/j
 
 It only handles journal text entries (no images or attachments).
 
-![screenshot](https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/screenshot.png "Screenshot")
+![screenshot](https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/screenshot.png  | width=300)
 
-## How it's made
+## How and Why
 
-Vibe coding using Claude AI.
+Made vibe coding using Claude AI.
 
 I've been using the RedNotebook app on my Linux desktop for years, and that works perfect for me. I am not a programmer, but I needed to update my journal on the go. A mobile app is currently not available, so Claude AI came to the rescue.
 
