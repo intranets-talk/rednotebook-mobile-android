@@ -91,8 +91,7 @@ class CalendarFragment : Fragment() {
                     if (pos == RecyclerView.NO_ID.toInt()) return
                     val (year, month) = posToYearMonth(pos)
                     viewModel.setYearMonth(year, month)
-                    updateHeader(year, month)
-                }
+                    updateHeader(year, month)                }
             }
         })
 
@@ -100,7 +99,7 @@ class CalendarFragment : Fragment() {
 
         binding.btnPrev.setOnClickListener { scrollByMonths(-1) }
         binding.btnNext.setOnClickListener { scrollByMonths(+1) }
-        binding.btnToday.setOnClickListener { jumpToToday() }
+        binding.fabToday.setOnClickListener { jumpToToday() }
         binding.tvMonthYear.setOnClickListener { showYearPicker() }
 
         updateHeader(viewModel.year.value!!, viewModel.month.value!!)
@@ -136,6 +135,10 @@ class CalendarFragment : Fragment() {
 
     private fun updateHeader(year: Int, month: Int) {
         binding.tvMonthYear.text = "${DateFormatSymbols().months[month - 1]} $year"
+        val now = Calendar.getInstance()
+        val isCurrentMonth = year == now.get(Calendar.YEAR) &&
+                month == now.get(Calendar.MONTH) + 1
+        binding.fabToday.visibility = if (isCurrentMonth) View.GONE else View.VISIBLE
     }
 
     private fun showYearPicker() {

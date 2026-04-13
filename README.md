@@ -30,8 +30,9 @@ The app is fairly basic. It does not handle images or attachments, only text ent
 
 - View journal entries on a calendar or on a list;
 - Edit, delete and add new journal entries;
-- Search journal entries.
-- Set dark/light mode for the app
+- Search journal entries;
+- Month and year in header screens can be tapped to jump through the years;
+- Set dark/light theme for the app via Settings.
 
 ## Troubleshooting
 
