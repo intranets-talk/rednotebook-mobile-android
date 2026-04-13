@@ -2,7 +2,7 @@
 
 ## What this is
 
-A simple Android/Kotlin app companion for the [RedNotebook](https://github.com/jendrikseipp/rednotebook) desktop journal app.
+A simple Android/Kotlin companion app for the [RedNotebook](https://github.com/jendrikseipp/rednotebook) desktop journal app.
 
 It only handles journal text entries (no images or attachments).
 
@@ -32,7 +32,6 @@ The app is fairly basic. It does not handle images or attachments, only text ent
 - Edit, delete and add new journal entries;
 - Search journal entries.
 - Set dark/light mode for the app
-- 100
 
 ## Troubleshooting
 
