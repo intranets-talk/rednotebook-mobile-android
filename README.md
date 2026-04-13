@@ -16,7 +16,7 @@ I've been using the RedNotebook app on my Linux desktop for years, and that work
 
 - There a two components:
 
-  1. The RedNotebook API service; This is a pre-requisite, you can get that from my repo [RedNotebook FastAPI](https://github.com/intranets-talk/RedNotebook-FastAPI-backend). Based on FastAPI/Python, it reads and writes RedNotebook yyyy-mm.txt files, providing the API endpoints for the Android app. More info on the repo. I have mine running on a Orange Pi with Armbian, as a systemd service.
+  1. The RedNotebook API service; This is a pre-requisite, you can get that from my [RedNotebook FastAPI](https://github.com/intranets-talk/RedNotebook-FastAPI-backend) repo. Based on FastAPI/Python, it reads and writes RedNotebook yyyy-mm.txt files, providing the API endpoints for the Android app. More info on the repo. I have mine running on a Orange Pi with Armbian, as a systemd service.
 
   2. This Android app.
 
