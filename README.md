@@ -6,7 +6,7 @@ A simple Android/Kotlin companion app for the [RedNotebook](https://github.com/j
 
 It only handles journal text entries (no images or attachments).
 
-[Screenshot]: https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/screenshot.png "Screenshot"
+![screenshot](https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/screenshot.png "Screenshot")
 
 ## How it's made
 
