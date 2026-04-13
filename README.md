@@ -32,7 +32,6 @@ The app is fairly basic. It does not handle images or attachments, only text ent
 - Edit, delete and add new journal entries;
 - Search journal entries.
 - Set dark/light mode for the app
-- 100
 
 ## Troubleshooting
 
