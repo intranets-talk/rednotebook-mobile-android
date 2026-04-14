@@ -39,10 +39,12 @@ The app is fairly basic. It does not handle images or attachments; only text ent
 
 ## Troubleshooting
 
-- If you have added the IP address in the Settings for the API endpoint - and no jurnal entries are showing, restarting the app may help. I've only tested it on a single phone model (TCL NextPaper).
+- If you have added the IP address in the Settings for the API endpoint - and no journal entries are showing, restarting the app may help. I've only tested it on a single phone model (TCL NextPaper).
 - You may need to allow installing apps from unknown sources on your Android phone.
 
 
 ## Contributing
 
-Feel free to submit a pull request for any improvements.
+- Can the app be improved? Of course, in many ways!
+- Ex: improve UI, add image attachments, add markdown, better navigation, add authentication.
+- Feel free to submit a pull request for any improvements.
