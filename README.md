@@ -20,21 +20,22 @@ I've been using the RedNotebook app on my Linux desktop for years, and that work
 
   1. The RedNotebook API service; This is a pre-requisite, you can get that from my [RedNotebook FastAPI](https://github.com/intranets-talk/RedNotebook-FastAPI-backend) repo. Based on FastAPI/Python, it reads and writes RedNotebook yyyy-mm.txt files, providing the API endpoints for the Android app. More info on the repo. I have mine running on a Orange Pi with Armbian, as a systemd service.
 
-  2. This Android app.
+  2. This Android app - RedNotebook Mobile.
 
 - The Android app or the API endpoints do not feature authentication. Exposing the API publicly to the Internet will make your journal entries available to anyone. Not a good idea.
-- Within the Setting section, the app expects a local LAN IP address to reach the API URL for your journal entries, which it should be on the same local network range (ex: 192.x.x.x)
-- While outside of your local Network/WiFi, you can still use the app, and it will sync back changes to your RedNotebook desktop app when the API URL is reachable again.
+- Within the Setting section, the app expects a local LAN IP address to reach the API URL for your journal entries, which it should be on the same local network range (ex: 192.x.x.x) - that your Android phone is using.
+- While outside of your local Network/WiFi, you can use the app, and it will sync back changes to your RedNotebook desktop app when the API URL is reachable again.
 
 ## Features
 
-The app is fairly basic. It does not handle images or attachments, only text entries.
+The app is fairly basic. It does not handle images or attachments; only text entries.
 
 - View journal entries on a calendar or on a list;
 - Edit, delete and add new journal entries;
 - Search journal entries;
 - Month and year in header screens can be tapped to jump through the years;
-- Set dark/light theme for the app via Settings.
+- Set dark/light theme for the app via Settings;
+- Works offline, syncing back all changes when online again.
 
 ## Troubleshooting
 
