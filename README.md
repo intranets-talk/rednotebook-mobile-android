@@ -23,23 +23,24 @@ I've been using the RedNotebook app on my Linux desktop for years, and that work
   2. This Android app - RedNotebook Mobile.
 
 - The Android app or the API endpoints do not feature authentication. Exposing the API publicly to the Internet will make your journal entries available to anyone. Not a good idea.
-- Within the Setting section, the app expects a local LAN IP address to reach the API URL for your journal entries, which it should be on the same local network range (ex: 192.x.x.x) - that your Android phone is using.
+- Within the Setting section, the app expects a local LAN IP address to reach the API URL for your journal entries, which it should be on the same local network range (ex: 192.x.x.x) as your Android phone.
 - While outside of your local Network/WiFi, you can use the app, and it will sync back changes to your RedNotebook desktop app when the API URL is reachable again.
 
 ## Features
 
-The app is fairly basic. It does not handle images or attachments; only text entries.
+The app is fairly basic. Unlike RedNotebook for desktop - it does not handle images or attachments; only text journal entries.
 
 - View journal entries on a calendar or on a list;
 - Edit, delete and add new journal entries;
 - Search journal entries;
-- Month and year in header screens can be tapped to jump through the years;
-- Set dark/light theme for the app via Settings;
+- Month and year in header screens can be used to jump through the years;
+- Dark and light themes available in Settings;
 - Works offline, syncing back all changes when online again.
 
 ## Troubleshooting
 
-- If you have added the IP address in the Settings for the API endpoint - and no journal entries are showing, restarting the app may help. I've only tested it on a single phone model (TCL NextPaper).
+- If you have added the IP address in the Settings for the API endpoint - and no journal entries are showing, restarting the app may help. I've only tested it on a single phone model (TCL NxtPaper).
+- Double check the IP address for the [RedNotebook FastAPI](https://github.com/intranets-talk/RedNotebook-FastAPI-backend) backend, entered in Settings. The API backend service runs on port 8000 by default, so this should be something like `http:192.168.1.10:8000`. The Settings screen will confirm if the IP is reachable or not.
 - You may need to allow installing apps from unknown sources on your Android phone.
 
 
