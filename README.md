@@ -2,9 +2,9 @@
 
 ## What this is
 
-A simple Android/Kotlin companion app for the [RedNotebook](https://github.com/jendrikseipp/rednotebook) desktop journal app.
+A simple Android/Kotlin companion app for the [RedNotebook](https://github.com/jendrikseipp/rednotebook) cross-platform journal app.
 
-It only handles journal text entries (no images or attachments).
+The Android app it only handles text journal entries (no images or file attachments).
 
 <img src="https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/sreenshot.png" width="200">
 
@@ -35,11 +35,10 @@ The app is fairly basic. Unlike RedNotebook for desktop - it does not handle ima
 - Search journal entries;
 - Date in header screens can be used to jump through the years;
 - Dark and light themes available in Settings;
-- Works offline, syncing back all changes when online again.
+- Works offline, syncing back all changes to your RedNotebook desktop app - when online again.
 
 ## Troubleshooting
 
-- If you have added the IP address in the Settings for the API endpoint - and no journal entries are showing, restarting the app may help.
 - The app syncs all journal entries locally when first connecting; if you have a lot of entries, it may take a minute or two.
 - I've only tested it on a single phone model (TCL NxtPaper).
 - Double check the IP address for the [RedNotebook FastAPI](https://github.com/intranets-talk/RedNotebook-FastAPI-backend) backend, entered in Settings. The API backend service runs on port 8000 by default, so this should be something like `http:192.168.1.10:8000`. The Settings screen will confirm if the IP is reachable or not.
