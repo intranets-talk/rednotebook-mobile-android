@@ -61,11 +61,26 @@ class ListFragment : Fragment() {
             viewModel.setYearMonth(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1)
         }
 
+        binding.fabAdd.setOnClickListener {
+            // Navigate to editor for today's day number in the currently viewed month
+            val year  = viewModel.year.value  ?: return@setOnClickListener
+            val month = viewModel.month.value ?: return@setOnClickListener
+            // Use today's day if we're in the current month, otherwise day 1
+            val now = Calendar.getInstance()
+            val day = now.get(Calendar.DAY_OF_MONTH)
+            findNavController().navigate(
+                R.id.action_list_to_editor,
+                bundleOf("year" to year, "month" to month, "day" to day)
+            )
+        }
+
         viewModel.year.observe(viewLifecycleOwner)  { updateHeader() }
         viewModel.month.observe(viewLifecycleOwner) { updateHeader() }
         viewModel.entries.observe(viewLifecycleOwner) { entries ->
             adapter.submitList(entries)
-            binding.emptyView.visibility = if (entries.isEmpty()) View.VISIBLE else View.GONE
+            val isEmpty = entries.isEmpty()
+            binding.emptyView.visibility = if (isEmpty) View.VISIBLE else View.GONE
+            binding.fabAdd.visibility    = View.VISIBLE
         }
     }
 
