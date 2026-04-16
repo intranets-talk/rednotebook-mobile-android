@@ -39,9 +39,9 @@ The app is fairly basic. Unlike RedNotebook for desktop - it does not handle ima
 
 ## Troubleshooting
 
-- The app syncs all journal entries locally when first connecting; if you have a lot of entries, it may take a minute or two.
-- I've only tested it on a single phone model (TCL NxtPaper).
-- Double check the IP address for the [RedNotebook FastAPI](https://github.com/intranets-talk/RedNotebook-FastAPI-backend) backend, entered in Settings. The API backend service runs on port 8000 by default, so this should be something like `http:192.168.1.10:8000`. The Settings screen will confirm if the IP is reachable or not.
+- The app syncs all journal entries locally when first connecting; if you have a lot of entries, it may take a minute.
+- Only tested on a single Android device (TCL NxtPaper).
+- Double check the IP address for the [RedNotebook FastAPI](https://github.com/intranets-talk/RedNotebook-FastAPI-backend) backend, entered in Settings. The API backend service runs on port 8000 by default, so this should be something like `http//:192.168.1.10:8000`. The Settings screen will confirm if the IP is reachable or not.
 - You may need to allow installing apps from unknown sources on your Android phone.
 - The app is not optimised for landscape usage.
 
