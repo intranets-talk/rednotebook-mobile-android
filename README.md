@@ -30,7 +30,7 @@ I've been using the RedNotebook app on my Linux desktop for years, and that work
 
 The app is fairly basic. Unlike RedNotebook for desktop - it does not handle images or attachments; only text journal entries.
 
-- View journal entries on a calendar or on a list;
+- View journal entries on a calendar or on a list; navigate the calendar by swiping;
 - Edit, delete and add new journal entries;
 - Search journal entries;
 - Date in header screens can be used to jump through the years;
@@ -44,6 +44,10 @@ The app is fairly basic. Unlike RedNotebook for desktop - it does not handle ima
 - Double check the IP address for the [RedNotebook FastAPI](https://github.com/intranets-talk/RedNotebook-FastAPI-backend) backend, entered in Settings. The API backend service runs on port 8000 by default, so this should be something like `http://192.168.1.10:8000`. The Settings screen will confirm if the IP is reachable or not.
 - You may need to allow installing apps from unknown sources on your Android phone.
 - The app is not optimised for landscape usage.
+
+## Thanks to
+
+- [Jendrik Seipp](https://github.com/jendrikseipp) - creator of RedNotebook and contributors.
 
 ## Contributing
 
