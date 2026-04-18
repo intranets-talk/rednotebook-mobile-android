@@ -2,9 +2,7 @@
 
 ## What this is
 
-A simple Android/Kotlin companion app for the [RedNotebook](https://github.com/jendrikseipp/rednotebook) cross-platform journal app.
-
-The Android app it only handles text journal entries (no images or file attachments).
+A simple Android/Kotlin companion app for the [RedNotebook](https://github.com/jendrikseipp/rednotebook) cross-platform journal app. The Android app it only handles text journal entries (no images or file attachments).
 
 <img src="https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/screenshot.png" width="500">
 
