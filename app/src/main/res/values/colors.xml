@@ -17,4 +17,7 @@
 
     <!-- Day number color: white in light mode -->
     <color name="day_number_color">#FFFFFFFF</color>
+
+    <color name="nav_icon_tint">#FF000000</color>
+    <color name="window_background">#FFF0F0F0</color>    
 </resources>

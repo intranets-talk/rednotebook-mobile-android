@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="day_number_color">#FFFFFFFF</color>
+    <color name="nav_icon_tint">#FFFFFFFF</color>
+    <color name="window_background">#FF121212</color>
+</resources>

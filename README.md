@@ -30,12 +30,13 @@ I've been using the RedNotebook app on my Linux desktop for years, and that work
 
 The app is fairly basic. Unlike RedNotebook for desktop - it does not handle images or attachments; only text journal entries.
 
-- View journal entries on a calendar or on a list; navigate the calendar by swiping;
-- Edit, delete and add new journal entries;
-- Search journal entries;
-- Date in header screens can be used to jump through the years;
-- Dark and light themes available in Settings;
-- Works offline, syncing back all changes to your RedNotebook desktop app - when online again.
+- Calendar view with swipe navigation, year picker, Today FAB
+- Entries list view with month navigation and Add/Today FABs  
+- Search tab with offline support
+- Settings tab with API URL configuration and dark/light theme toggle
+- Offline-first architecture with Room local DB and WorkManager sync
+- Syncing back all changes to your RedNotebook desktop app - when online again.
+- Full initial sync on first connection
 
 ## Troubleshooting
 

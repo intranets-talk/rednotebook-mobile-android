@@ -22,6 +22,7 @@
 
             <ImageButton
                 android:id="@+id/btn_prev"
+                android:tint="@color/nav_icon_tint"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@android:drawable/ic_media_previous"
@@ -41,6 +42,7 @@
 
             <ImageButton
                 android:id="@+id/btn_next"
+                android:tint="@color/nav_icon_tint"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@android:drawable/ic_media_next"
