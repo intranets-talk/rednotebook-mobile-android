@@ -1,4 +1,4 @@
-# A RedNotebook mobile companion client for Android <img src="https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/logo.png" width="30">
+# A RedNotebook <img src="https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/logo.png" width="30"> mobile companion client for Android
 
 ## What this is
 
