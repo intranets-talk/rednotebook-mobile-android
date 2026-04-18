@@ -1,8 +1,8 @@
-# A RedNotebook mobile companion client for Android.
+# A RedNotebook mobile companion client for Android <img src="https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/logo.png" width="30">
 
 ## What this is
 
-A simple Android/Kotlin companion app for the [RedNotebook](https://github.com/jendrikseipp/rednotebook) cross-platform journal app <img src="https://github.com/intranets-talk/rednotebook-mobile-android/blob/main/logo.png" width="100">
+A simple Android/Kotlin companion app for the [RedNotebook](https://github.com/jendrikseipp/rednotebook) cross-platform journal app.
 
 The Android app it only handles text journal entries (no images or file attachments).
 
