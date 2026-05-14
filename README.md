@@ -35,6 +35,13 @@ The app is fairly basic. Unlike RedNotebook for desktop - it does not handle ima
 - Offline-first architecture with Room local DB and WorkManager sync
 - Syncing back all changes to your RedNotebook desktop app - when online again.
 - Full initial sync on first connection
+- Embed Immich photos: ability to embed Immich photos, with the FastAPI service acting as proxy — embed images in RedNotebook desktop and Android app, using a URL link format like: `[""http://YOUR_FASTAPI_IP:8000/immich/ASSET_ID"".jpg]`. Note that the file extension in URL is a dummy for RedNotebook compatibility — actual format is detected from Immich response headers.
+
+* This will not work for videos. You can get the ASSET_ID for an Immich photo by opening the photo in the browser, the last part of the URL will be the ASSET_ID, example:
+
+`https://IMMICH-IP/photos/ec96511e-957a-4954-93r9-ae4543e0fcb8`
+
+* I know this is not "elegant" or "ideal", personally I'll take this rather than nothing, improvements welcomed.
 
 ## Troubleshooting
 
@@ -50,6 +57,15 @@ The app is fairly basic. Unlike RedNotebook for desktop - it does not handle ima
 
 ## Contributing
 
-- Can the app be improved? Of course, in many ways!
-- Ex: improve UI, add image attachments, add markdown, better navigation, add authentication, optimise for usage in landscape.
+- Can the app be improved? Of course, in many ways:
+
+  - Improve UI;
+  - Add markdown;
+  - Improve Immich integration for embedding images
+  - Improve navigation;
+  - Add authentication;
+  - Optimise for usage in landscape;
+  - Add option to automatically insert the outside temperature;
+
 - Feel free to submit a pull request for any improvements.
+- MIT Licensed.

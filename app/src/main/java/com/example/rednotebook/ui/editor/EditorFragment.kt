@@ -1,7 +1,9 @@
 package com.example.rednotebook.ui.editor
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -11,7 +13,12 @@ import com.example.rednotebook.databinding.FragmentEditorBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.example.rednotebook.sync.SyncWorker
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.text.DateFormatSymbols
 
 class EditorFragment : Fragment() {
@@ -22,6 +29,14 @@ class EditorFragment : Fragment() {
 
     private var year = 0; private var month = 0; private var day = 0
     private var isEditing = false
+    private var currentText = ""
+
+    // Photo picker launcher
+    private val pickImage = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let { uploadImage(it) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +63,7 @@ class EditorFragment : Fragment() {
         binding.btnEditTop.setOnClickListener { if (isEditing) saveEntry() else setEditMode(true) }
         binding.btnSave.setOnClickListener   { saveEntry() }
         binding.btnDelete.setOnClickListener { confirmDelete() }
+        binding.btnInsertImage.setOnClickListener { pickImage.launch("image/*") }
 
         loadContent()
     }
@@ -56,7 +72,8 @@ class EditorFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val entry = repo.getEntry(year, month, day)
-                if (isAdded) populateViews(entry?.text ?: "")
+                currentText = entry?.text ?: ""
+                if (isAdded) populateViews(currentText)
             } catch (_: Exception) {
                 if (isAdded) populateViews("")
             }
@@ -64,19 +81,21 @@ class EditorFragment : Fragment() {
     }
 
     private fun populateViews(text: String) {
-        binding.tvContent.text = text
+        currentText = text
+        EntryRenderer.render(requireContext(), text, binding.contentContainer)
         binding.etContent.setText(text)
     }
 
     private fun setEditMode(editing: Boolean) {
         isEditing = editing
         if (editing) {
-            binding.etContent.setText(binding.tvContent.text)
+            binding.etContent.setText(currentText)
             binding.scrollView.visibility = View.GONE
             binding.etContent.visibility  = View.VISIBLE
             binding.etContent.requestFocus()
         } else {
-            binding.tvContent.text        = binding.etContent.text
+            currentText = binding.etContent.text.toString()
+            EntryRenderer.render(requireContext(), currentText, binding.contentContainer)
             binding.etContent.visibility  = View.GONE
             binding.scrollView.visibility = View.VISIBLE
         }
@@ -85,19 +104,79 @@ class EditorFragment : Fragment() {
         binding.editToolbar.visibility = if (editing) View.VISIBLE else View.GONE
     }
 
+    private fun uploadImage(uri: Uri) {
+        if (!ApiClient.isConfigured()) {
+            Snackbar.make(binding.root, "API not configured — cannot upload image", Snackbar.LENGTH_LONG).show()
+            return
+        }
+
+        binding.uploadProgress.visibility = View.VISIBLE
+        binding.btnInsertImage.isEnabled  = false
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val date = "%04d-%02d-%02d".format(year, month, day)
+
+                // Read image bytes from URI
+                val bytes = withContext(Dispatchers.IO) {
+                    requireContext().contentResolver.openInputStream(uri)?.readBytes()
+                } ?: throw Exception("Could not read image")
+
+                // Detect MIME type
+                val mimeType = requireContext().contentResolver.getType(uri) ?: "image/jpeg"
+                val ext = when (mimeType) {
+                    "image/png"  -> "png"
+                    "image/gif"  -> "gif"
+                    "image/webp" -> "webp"
+                    else         -> "jpg"
+                }
+
+                // Build multipart request
+                val requestBody = bytes.toRequestBody(mimeType.toMediaTypeOrNull())
+                val part = MultipartBody.Part.createFormData(
+                    "file", "image.$ext", requestBody
+                )
+
+                // Upload
+                val response = ApiClient.api.uploadAttachment(date, part)
+
+                // Build the full URL for embedding
+                val baseUrl = ApiClient.getSavedUrl(requireContext()).trimEnd('/')
+                val imageUrlWithoutExt = "$baseUrl${response.url}".removeSuffix(".$ext")
+                val imageTag = "\n[\"\"$imageUrlWithoutExt\"\".$ext]\n"
+
+                // Insert at cursor position or at end
+                if (isAdded) {
+                    val editText = binding.etContent
+                    val cursor   = editText.selectionEnd.takeIf { it >= 0 } ?: editText.text.length
+                    editText.text.insert(cursor, imageTag)
+                    Snackbar.make(binding.root, "Image inserted!", Snackbar.LENGTH_SHORT).show()
+                }
+
+            } catch (e: Exception) {
+                if (isAdded) Snackbar.make(
+                    binding.root, "Upload failed: ${e.message}", Snackbar.LENGTH_LONG
+                ).show()
+            } finally {
+                if (isAdded) {
+                    binding.uploadProgress.visibility = View.GONE
+                    binding.btnInsertImage.isEnabled  = true
+                }
+            }
+        }
+    }
+
     private fun saveEntry() {
         val text = binding.etContent.text.toString()
-        // Disable buttons immediately to prevent double-tap and back-crash
         binding.btnEditTop.isEnabled = false
         binding.btnSave.isEnabled    = false
 
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 repo.saveEntry(year, month, day, text)
-
-                if (!isAdded) return@launch  // fragment already gone — do nothing
-
-                binding.tvContent.text = text
+                if (!isAdded) return@launch
+                currentText = text
+                EntryRenderer.render(requireContext(), text, binding.contentContainer)
                 SyncWorker.enqueue(requireContext())
                 val msg = if (ApiClient.isConfigured()) "Saved!"
                           else "Saved locally — will sync when online"

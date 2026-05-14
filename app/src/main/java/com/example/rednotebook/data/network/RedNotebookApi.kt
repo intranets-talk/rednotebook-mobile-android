@@ -3,6 +3,8 @@ package com.example.rednotebook.data.network
 import com.example.rednotebook.data.model.Entry
 import com.example.rednotebook.data.model.EntryBody
 import com.example.rednotebook.data.model.MonthRef
+import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -41,4 +43,18 @@ interface RedNotebookApi {
 
     @GET("search")
     suspend fun search(@Query("q") query: String): List<Entry>
+
+    @Multipart
+    @POST("attachments/{date}")
+    suspend fun uploadAttachment(
+        @Path("date") date: String,
+        @Part file: MultipartBody.Part
+    ): AttachmentResponse
 }
+
+data class AttachmentResponse(
+    val filename: String,
+    val url: String,
+    val token: String,
+    val size: Long
+)

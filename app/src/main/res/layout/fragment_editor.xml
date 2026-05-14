@@ -25,6 +25,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@android:drawable/ic_media_previous"
+                android:tint="@color/nav_icon_tint"
                 android:contentDescription="Back"
                 android:background="?attr/selectableItemBackgroundBorderless" />
 
@@ -51,7 +52,7 @@
             android:layout_height="1dp"
             android:background="?attr/colorControlHighlight" />
 
-        <!-- VIEW MODE: selectable TextView inside ScrollView -->
+        <!-- VIEW MODE -->
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
@@ -59,18 +60,16 @@
             android:layout_weight="1"
             android:fillViewport="true">
 
-            <TextView
-                android:id="@+id/tv_content"
+            <LinearLayout
+                android:id="@+id/content_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textSize="16sp"
-                android:lineSpacingMultiplier="1.4"
-                android:textIsSelectable="true" />
+                android:orientation="vertical"
+                android:padding="16dp" />
 
         </ScrollView>
 
-        <!-- EDIT MODE: EditText replacing the ScrollView -->
+        <!-- EDIT MODE -->
         <EditText
             android:id="@+id/et_content"
             android:layout_width="match_parent"
@@ -86,18 +85,32 @@
             android:visibility="gone"
             android:scrollbars="vertical" />
 
-        <!-- Bottom bar: only visible in edit mode -->
+        <!-- Bottom bar: visible in edit mode -->
         <LinearLayout
             android:id="@+id/edit_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="end"
+            android:gravity="center_vertical"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:paddingTop="4dp"
             android:paddingBottom="8dp"
             android:visibility="gone">
+
+            <!-- Insert image button -->
+            <ImageButton
+                android:id="@+id/btn_insert_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_menu_gallery"
+                android:contentDescription="Insert image"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/btn_delete"
@@ -114,6 +127,15 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton" />
 
         </LinearLayout>
+
+        <!-- Upload progress bar — visible during upload -->
+        <ProgressBar
+            android:id="@+id/upload_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
 
     </LinearLayout>
 
